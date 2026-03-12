@@ -1,4 +1,4 @@
-https://leetcode.com/problems/largest-number-at-least-twice-of-others/description/
+747.  https://leetcode.com/problems/largest-number-at-least-twice-of-others/description/
 Answer for this question
 class Solution {
     public int dominantIndex(int[] nums) {
