@@ -1,0 +1,12 @@
+Question No: 1884. Egg Drop With 2 Eggs and N Floors
+class Solution {
+    public int twoEggDrop(int n) {
+        int moves=0;
+        int sum=0;
+        while(sum<n){
+            moves++;
+            sum+=moves;
+        }
+        return moves;
+    }
+}
