@@ -1,0 +1,32 @@
+Hacker Rank
+Question No: https://www.hackerrank.com/challenges/duplicate-word/problem
+package test;
+
+import java.util.regex.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+
+        String regex = "\\b(\\w+)(\\s+\\1\\b)+";
+
+        Scanner in = new Scanner(System.in);
+        int numSentences = Integer.parseInt(in.nextLine());
+
+        while (numSentences-- > 0) {
+            String input = in.nextLine();
+
+            Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(input);
+
+            while (m.find()) {
+                input = input.replaceAll(m.group(), m.group(1));
+            }
+
+            System.out.println(input);
+        }
+
+        in.close();
+    }
+}
