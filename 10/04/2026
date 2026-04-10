@@ -1,0 +1,83 @@
+HacckerRank
+Question No: https://www.hackerrank.com/challenges/waiter/problem
+package test;
+
+	import java.util.*;
+
+	public class WaiterProblem {
+
+	    public static List<Integer> getPrimes(int q) {
+	        List<Integer> primes = new ArrayList<>();
+	        int num = 2;
+
+	        while (primes.size() < q) {
+	            boolean isPrime = true;
+	            for (int i = 2; i * i <= num; i++) {
+	                if (num % i == 0) {
+	                    isPrime = false;
+	                    break;
+	                }
+	            }
+	            if (isPrime) primes.add(num);
+	            num++;
+	        }
+	        return primes;
+	    }
+
+	    public static List<Integer> waiter(int[] number, int q) {
+	        Stack<Integer> A = new Stack<>();
+
+	        for (int num : number) {
+	            A.push(num);
+	        }
+
+	        List<Integer> result = new ArrayList<>();
+	        List<Integer> primes = getPrimes(q);
+
+	        for (int i = 0; i < q; i++) {
+	            Stack<Integer> nextA = new Stack<>();
+	            Stack<Integer> B = new Stack<>();
+
+	            int prime = primes.get(i);
+
+	            while (!A.isEmpty()) {
+	                int plate = A.pop();
+	                if (plate % prime == 0) {
+	                    B.push(plate);
+	                } else {
+	                    nextA.push(plate);
+	                }
+	            }
+
+	            while (!B.isEmpty()) {
+	                result.add(B.pop());
+	            }
+
+	            A = nextA;
+	        }
+
+	        while (!A.isEmpty()) {
+	            result.add(A.pop());
+	        }
+
+	        return result;
+	    }
+
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+
+	        int n = sc.nextInt();
+	        int q = sc.nextInt();
+
+	        int[] number = new int[n];
+	        for (int i = 0; i < n; i++) {
+	            number[i] = sc.nextInt();
+	        }
+
+	        List<Integer> result = waiter(number, q);
+
+	        for (int num : result) {
+	            System.out.println(num);
+	        }
+	    }
+	}
